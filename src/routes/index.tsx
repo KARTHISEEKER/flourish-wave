@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, CircleCheck, Code2, Flame, Layers, RotateCcw, Shuffle, Target, Timer, Trophy, X, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, CircleCheck, Code2, Flame, Layers, RotateCcw, Shuffle, Target, Timer, Trophy, X, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { cards, topics, shuffle, makeQuiz, scoreAnswers, type TechCard, type Topic, type Question, type Answer } from '@/lib/game-data';
@@ -36,7 +36,7 @@ function Index() {
   const studyRef = useRef<HTMLDivElement>(null);
   const libraryRef = useRef<HTMLElement>(null);
   const current = deck[position];
-  const currentTopic = topics.find(t => t.id === topic) ?? topics[0];
+  const currentTopic = topics.find(t => t.id === topic) ?? { name: 'Technical concepts', symbol: '{ }' };
   const correct = round ? scoreAnswers(round.answers) / 100 : 0;
   const question = round?.questions[round.answers.length];
 

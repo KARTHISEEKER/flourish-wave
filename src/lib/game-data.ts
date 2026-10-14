@@ -25,7 +25,7 @@ const content: Record<Topic, [string, string, string][]> = {
     ['Generator', 'An iterator-producing function that yields values lazily instead of building an entire collection at once.', 'def count():\n    yield 1\n    yield 2'],
     ['Exception', 'An object representing an error or exceptional condition that can be raised and handled.', 'try: n = int("x")\nexcept ValueError: n = 0'],
     ['Lambda', 'An anonymous function defined as a single expression.', 'double = lambda x: x * 2'],
-    ['Set', 'An unordered collection of distinct, hashable elements.', 'unique = set([1, 1, 2]) // {1, 2}'],
+    ['Set', 'An unordered collection of distinct, hashable elements.', 'unique = set([1, 1, 2]) # {1, 2}'],
   ],
   web: [
     ['Semantic HTML', 'HTML elements that communicate the meaning and structure of their content.', '<article><h1>A story</h1></article>'],
@@ -53,7 +53,12 @@ export function shuffle<T>(items: T[]): T[] {
   const result = [...items];
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
+    const left = result[i];
+    const right = result[j];
+    if (left !== undefined && right !== undefined) {
+      result[i] = right;
+      result[j] = left;
+    }
   }
   return result;
 }
